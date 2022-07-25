@@ -72,9 +72,9 @@ ub = torch.FloatTensor([22.8373,10.0000,10.0000,10.0000,22.8373,10.0000,10.0000,
 # torch.autograd.gradcheck(BortfeldFunction.apply, (x0, z))
 
 
-lr =1e-4
+lr =1e-2
 
-N = 1000
+N = 200
 net = SimpleModel(x)
 optimizer = optim.Adam(net.parameters(), lr=lr, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)
 outputs1,para,loss1 = train(net,z,idd,N,lb,ub,optimizer)
@@ -88,7 +88,7 @@ print('SGD',loss2[-1])
 
 x = torch.FloatTensor([3.9199, 0.2744, 0.0010, 0.0057,13.5097, 0.9457, 0.0010, 0.0186,10.0225, 0.7016, 0.0010, 0.0118]).view(-1,1)
 net = SimpleModel(x)
-optimizer = Adai(net.parameters(), lr=lr, betas=(0.1, 0.5), eps=1e-03, weight_decay=0)
+optimizer = Adai(net.parameters(), lr=lr, betas=(0.1, 0.99), eps=1e-03, weight_decay=0)
 outputs3,para,loss3 = train(net,z,idd,N,lb,ub,optimizer)
 print('Adai',loss3[-1])
 
@@ -103,7 +103,6 @@ ax.legend()
 plt.show()
 
 # fig,ax = plt.subplots()
-# # Using set_dashes() to modify dashing of an existing line
 # line1, = ax.plot(z.numpy(), outputs1, label='Adam')
 # line1.set_dashes([2, 2, 10, 2])  # 2pt line, 2pt break, 10pt line, 2pt break
 # line2, = ax.plot(z.numpy(), outputs2, label='SGD')
