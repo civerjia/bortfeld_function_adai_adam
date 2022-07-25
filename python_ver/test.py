@@ -100,7 +100,11 @@ line2, = ax.semilogy(iter, loss2, label='SGD')
 line2.set_dashes([2, 2, 10, 2])  # 2pt line, 2pt break, 10pt line, 2pt break
 line3, = ax.semilogy(iter, loss3, label='Adai')
 ax.legend()
+plt.title('Loss_lr'+str(lr))
 plt.show()
+
+fname = 'Loss_lr'+str(lr)+'.png'
+plt.savefig(fname)
 
 # fig,ax = plt.subplots()
 # line1, = ax.plot(z.numpy(), outputs1, label='Adam')
